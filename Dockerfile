@@ -12,4 +12,4 @@ RUN npm install -g pnpm@8.7.5 && pnpm install
 # Copy package.json到工作目錄
 COPY . /www
 
-CMD ["pnpm", "start"]
+CMD ["pnpm", "build"]
