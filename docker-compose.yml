@@ -7,13 +7,13 @@ networks:
 
 services:
   # 容器1
-  redis-server:
-    networks:
-      - node-network
-    # 使用的镜像
-    image: 'redis'
-    ports:
-      - '6379:6379'
+  # redis-server:
+  #   networks:
+  #     - node-network
+  #   # 使用的镜像
+  #   image: 'redis'
+  #   ports:
+  #     - '6379:6379'
 
   # 容器2
   node-app:
@@ -23,4 +23,4 @@ services:
     build: .
     # 端口映射
     ports:
-      - '8081:8081'
+      - '3000:3000'

@@ -1,5 +1,4 @@
-FROM node:alpine
-
+FROM node:alpine as builder
 
 # 設定工作路徑
 WORKDIR /www
@@ -12,4 +11,8 @@ RUN npm install -g pnpm@8.7.5 && pnpm install
 # Copy package.json到工作目錄
 COPY . /www
 
-CMD ["pnpm", "build"]
+RUN npm run build
+
+FROM nginx
+
+COPY --from=builder /www/build /usr/share/nginx/html
