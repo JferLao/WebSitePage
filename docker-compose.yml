@@ -1,0 +1,26 @@
+# 使用的的 docker compose 文件标准
+version: '3'
+# 服务列表，一个容器可以理解为一个服务
+networks:
+  node-network:
+    driver: bridge
+
+services:
+  # 容器1
+  redis-server:
+    networks:
+      - node-network
+    # 使用的镜像
+    image: 'redis'
+    ports:
+      - '6379:6379'
+
+  # 容器2
+  node-app:
+    networks:
+      - node-network
+    # 构建当前项目
+    build: .
+    # 端口映射
+    ports:
+      - '8081:8081'
