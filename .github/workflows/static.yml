@@ -36,6 +36,7 @@ jobs:
           node-version: '20.x'
       - run: npm install
       - run: npm run build
+      - run: npm run deploy
       # - name: Checkout
       #   uses: actions/checkout@v3
       # - name: Setup Pages
@@ -45,6 +46,6 @@ jobs:
         # with:
           # Upload entire repository
           # path: '.'
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v2
+      - name: 构建 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
