@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t laozefeng/docker-app-demo -f ./client.dockerfile.dev ./client
+
+after_success:
+  - dokcer build -t laozefeng/docker-app-client./client
+  - dokcer build -t laozefeng/docker-app-nginx ./nginx
+  - dokcer build -t laozefeng/docker-app-server ./server
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - dokcer push -t laozefeng/docker-app-client
+  - dokcer push -t laozefeng/docker-app-nginx 
+  - dokcer push -t laozefeng/docker-app-server
