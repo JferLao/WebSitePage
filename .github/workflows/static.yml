@@ -34,13 +34,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-      - run: docker build -t laozefeng/docker-app-client./client
-      - run: docker build -t laozefeng/docker-app-nginx ./nginx
-      - run: docker build -t laozefeng/docker-app-server ./server
-
-      # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-
-      - run: docker push -t laozefeng/docker-app-client
-      - run: docker push -t laozefeng/docker-app-nginx 
-      - run: docker push -t laozefeng/docker-app-server
-
+      # - run: docker-compose up --build
+      - name: 构建 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
