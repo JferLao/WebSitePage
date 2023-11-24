@@ -34,17 +34,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-      - run: docker-compose up
-      # - run: npm run deploy
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-      # - name: Setup Pages
-      #   uses: actions/configure-pages@v3
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v2
-        # with:
-          # Upload entire repository
-          # path: '.'
-      - name: 构建 GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+      - run: docker build -t laozefeng/docker-app-client./client
+      - run: docker build -t laozefeng/docker-app-nginx ./nginx
+      - run: docker build -t laozefeng/docker-app-server ./server
+
+      # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+      - run: docker push -t laozefeng/docker-app-client
+      - run: docker push -t laozefeng/docker-app-nginx 
+      - run: docker push -t laozefeng/docker-app-server
+
